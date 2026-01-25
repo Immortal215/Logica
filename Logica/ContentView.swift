@@ -1,61 +1,83 @@
-//
-//  ContentView.swift
-//  Logica
-//
-//  Created by Sharul Shah on 1/17/26.
-//
-
 import SwiftUI
 import SwiftData
+import Foundation
+import FoundationModels
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
-
+    @Environment(\.modelContext) var modelContext
+    @Query var slates: [Slate]
+    
     var body: some View {
-        NavigationSplitView {
+        NavigationStack {
             List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
+                ForEach(slates) { i in
+                    Text(i.text)
                 }
             }
-        } detail: {
-            Text("Select an item")
+            .navigationTitle("Found Slates")
+        }
+        .onAppear {
+            if (slates.isEmpty) {
+                addItem(Discovery(text: "Fire", emoji: "🔥", creators: [""]), at: CGPoint())
+                addItem(Discovery(text: "Water", emoji: "💧", creators: [""]), at: CGPoint())
+                addItem(Discovery(text: "Earth", emoji: "🌍", creators: [""]), at: CGPoint())
+                addItem(Discovery(text: "Wind", emoji: "💨", creators: [""]), at: CGPoint())
+            }
         }
     }
-
-    private func addItem() {
+    func addItem(_ discovery: Discovery, at location: CGPoint) {
         withAnimation {
-            let newItem = Item(timestamp: Date())
+            let newItem = Slate(discovery: discovery, placedLocation: location)
             modelContext.insert(newItem)
         }
     }
 
-    private func deleteItems(offsets: IndexSet) {
+    func deleteItem(_ item: Slate) {
         withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
-            }
+            modelContext.delete(item)
+        }
+    }
+
+    func moveItem(_ item: Slate, to location: CGPoint) {
+        withAnimation {
+            item.location = location
         }
     }
 }
 
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+
+
+final class CraftCombiner {
+    let session = LanguageModelSession()
+    
+    func combine(a: String, b: String, discovered: [String]) async throws -> String {
+        let cap = 1000
+        let known = discovered.prefix(cap).joined(separator: ", ")
+        
+        let prompt = """
+        You are an Infinite Craft word-combination engine.
+        
+        Combine A and B into exactly one new item.
+        
+        A: \(a)
+        B: \(b)
+        
+        Already discovered items (reuse an exact match if it is the best answer):
+        \(known)
+        
+        Rules:
+        - Output should be only two strings seperated by a comma.
+        - There are two outputs: Name and Emoji.
+        - Output should look like this "Name, Emoji" 
+        - name must be 1 to 3 words, Title Case, no punctuation.
+        - Prefer something conceptually related to A and B.
+        - The emoji must be an Apple emoji most related to the word
+        """
+        
+        do {
+            return try await session.respond(to: prompt).content
+        } catch {
+            return ""
+        }
+    }
 }
