@@ -1,0 +1,331 @@
+[
+  {
+    "id": "derivation-quadratic-formula",
+    "steps": [
+      {
+        "equation": "ax^2 + bx + c = 0",
+        "explanationMarkdown": "Start from a general Quadratic Function with nonzero a.",
+        "animationHint": "focus-leading-coefficient"
+      },
+      {
+        "equation": "x^2 + (b/a)x = -c/a",
+        "explanationMarkdown": "Divide by a to normalize the quadratic term.",
+        "animationHint": "normalize"
+      },
+      {
+        "equation": "(x + b/2a)^2 = (b^2 - 4ac)/4a^2",
+        "explanationMarkdown": "Apply Completing the Square and expose the Discriminant.",
+        "animationHint": "complete-square"
+      },
+      {
+        "equation": "x = (-b ± √(b^2 - 4ac)) / (2a)",
+        "explanationMarkdown": "Take square roots and isolate x to obtain the Quadratic Formula.",
+        "animationHint": "final-form"
+      }
+    ],
+    "interactiveModelID": "quadratic"
+  },
+  {
+    "id": "derivation-linear-equation",
+    "steps": [
+      {
+        "equation": "ax + b = c",
+        "explanationMarkdown": "Begin with a one variable Linear Equation.",
+        "animationHint": "start"
+      },
+      {
+        "equation": "ax = c - b",
+        "explanationMarkdown": "Subtract b from both sides.",
+        "animationHint": "balance-subtract"
+      },
+      {
+        "equation": "x = (c - b)/a",
+        "explanationMarkdown": "Divide by a to solve for x.",
+        "animationHint": "solve"
+      }
+    ],
+    "interactiveModelID": "linear"
+  },
+  {
+    "id": "derivation-slope-intercept",
+    "steps": [
+      {
+        "equation": "ax + by = c",
+        "explanationMarkdown": "Use the standard form of a Linear Equation.",
+        "animationHint": "standard"
+      },
+      {
+        "equation": "by = -ax + c",
+        "explanationMarkdown": "Move the x term to the right side.",
+        "animationHint": "rearrange"
+      },
+      {
+        "equation": "y = (-a/b)x + c/b",
+        "explanationMarkdown": "Divide by b to read slope and intercept directly.",
+        "animationHint": "isolate-y"
+      },
+      {
+        "equation": "y = mx + b",
+        "explanationMarkdown": "Rename coefficients to the Slope Intercept Form constants.",
+        "animationHint": "rename"
+      }
+    ],
+    "interactiveModelID": "linear"
+  },
+  {
+    "id": "derivation-vertex-form",
+    "steps": [
+      {
+        "equation": "y = ax^2 + bx + c",
+        "explanationMarkdown": "Start from a Quadratic Function in standard form.",
+        "animationHint": "start"
+      },
+      {
+        "equation": "y = a(x^2 + (b/a)x) + c",
+        "explanationMarkdown": "Factor out a from the quadratic and linear terms.",
+        "animationHint": "factor-a"
+      },
+      {
+        "equation": "y = a[(x + b/2a)^2 - (b/2a)^2] + c",
+        "explanationMarkdown": "Insert and subtract the completing-square value.",
+        "animationHint": "complete-square"
+      },
+      {
+        "equation": "y = a(x - h)^2 + k",
+        "explanationMarkdown": "Collect constants into h and k to reveal Vertex Form.",
+        "animationHint": "vertex"
+      }
+    ],
+    "interactiveModelID": "quadratic"
+  },
+  {
+    "id": "derivation-binomial-theorem",
+    "steps": [
+      {
+        "equation": "(x + y)^n",
+        "explanationMarkdown": "Consider repeated multiplication of a binomial.",
+        "animationHint": "start"
+      },
+      {
+        "equation": "(x + y)^n = Σ C(n,k) x^(n-k) y^k",
+        "explanationMarkdown": "Count choices of y terms with combinations C(n,k).",
+        "animationHint": "combinations"
+      },
+      {
+        "equation": "C(n,k) = n!/(k!(n-k)!)",
+        "explanationMarkdown": "Substitute factorial form for each coefficient.",
+        "animationHint": "coefficient"
+      }
+    ],
+    "interactiveModelID": "cubic"
+  },
+  {
+    "id": "derivation-derivative-definition",
+    "steps": [
+      {
+        "equation": "f'(x) = lim_{h→0} [f(x+h)-f(x)]/h",
+        "explanationMarkdown": "Begin with the Derivative Definition limit quotient.",
+        "animationHint": "difference-quotient"
+      },
+      {
+        "equation": "f(x+h) - f(x)",
+        "explanationMarkdown": "Measure output change from a small input shift h.",
+        "animationHint": "delta-output"
+      },
+      {
+        "equation": "[f(x+h)-f(x)]/h",
+        "explanationMarkdown": "Scale by input change to get average rate.",
+        "animationHint": "average-rate"
+      },
+      {
+        "equation": "lim_{h→0} [f(x+h)-f(x)]/h",
+        "explanationMarkdown": "Take the Limit as h approaches zero for instantaneous rate.",
+        "animationHint": "instant-rate"
+      }
+    ],
+    "interactiveModelID": "quadratic"
+  },
+  {
+    "id": "derivation-power-rule",
+    "steps": [
+      {
+        "equation": "f(x)=x^n",
+        "explanationMarkdown": "Set a power function to differentiate.",
+        "animationHint": "start"
+      },
+      {
+        "equation": "f'(x)=lim_{h→0}[(x+h)^n-x^n]/h",
+        "explanationMarkdown": "Apply the Derivative Definition to x^n.",
+        "animationHint": "substitute"
+      },
+      {
+        "equation": "(x+h)^n = x^n + nx^{n-1}h + ...",
+        "explanationMarkdown": "Expand with Binomial Theorem and cancel x^n.",
+        "animationHint": "expand"
+      },
+      {
+        "equation": "d/dx(x^n)=nx^{n-1}",
+        "explanationMarkdown": "After dividing by h and taking the Limit, only nx^{n-1} remains.",
+        "animationHint": "final"
+      }
+    ],
+    "interactiveModelID": "cubic"
+  },
+  {
+    "id": "derivation-chain-rule",
+    "steps": [
+      {
+        "equation": "y = f(g(x))",
+        "explanationMarkdown": "Start with a composed function.",
+        "animationHint": "compose"
+      },
+      {
+        "equation": "dy/dx = (dy/du)(du/dx)",
+        "explanationMarkdown": "Track change through an intermediate variable u = g(x).",
+        "animationHint": "u-sub"
+      },
+      {
+        "equation": "d/dx f(g(x)) = f'(g(x)) · g'(x)",
+        "explanationMarkdown": "Multiply outer derivative at inner value by inner derivative.",
+        "animationHint": "final"
+      }
+    ],
+    "interactiveModelID": "sine"
+  },
+  {
+    "id": "derivation-product-rule",
+    "steps": [
+      {
+        "equation": "y = f(x)g(x)",
+        "explanationMarkdown": "Start with a product of two functions.",
+        "animationHint": "start"
+      },
+      {
+        "equation": "y(x+h)-y(x)=f(x+h)g(x+h)-f(x)g(x)",
+        "explanationMarkdown": "Write the finite change over h.",
+        "animationHint": "expand"
+      },
+      {
+        "equation": "= [f(x+h)-f(x)]g(x+h)+f(x)[g(x+h)-g(x)]",
+        "explanationMarkdown": "Add and subtract a cross term to separate changes.",
+        "animationHint": "split"
+      },
+      {
+        "equation": "(fg)' = f'g + fg'",
+        "explanationMarkdown": "Divide by h and take the Limit to obtain the Product Rule.",
+        "animationHint": "final"
+      }
+    ],
+    "interactiveModelID": "quadratic"
+  },
+  {
+    "id": "derivation-mean",
+    "steps": [
+      {
+        "equation": "x_1, x_2, ..., x_n",
+        "explanationMarkdown": "List n observed values.",
+        "animationHint": "data"
+      },
+      {
+        "equation": "x_1 + x_2 + ... + x_n",
+        "explanationMarkdown": "Sum all observations.",
+        "animationHint": "sum"
+      },
+      {
+        "equation": "mean = (x_1 + ... + x_n)/n",
+        "explanationMarkdown": "Divide by n to compute the Mean.",
+        "animationHint": "divide"
+      }
+    ],
+    "interactiveModelID": "regression"
+  },
+  {
+    "id": "derivation-variance",
+    "steps": [
+      {
+        "equation": "mean = (x_1 + ... + x_n)/n",
+        "explanationMarkdown": "Compute the Mean first.",
+        "animationHint": "mean"
+      },
+      {
+        "equation": "(x_i - mean)^2",
+        "explanationMarkdown": "Measure each squared distance from the Mean.",
+        "animationHint": "distance"
+      },
+      {
+        "equation": "variance = Σ(x_i - mean)^2 / n",
+        "explanationMarkdown": "Average all squared distances to get Variance.",
+        "animationHint": "average"
+      }
+    ],
+    "interactiveModelID": "normal"
+  },
+  {
+    "id": "derivation-z-score",
+    "steps": [
+      {
+        "equation": "mean and standard deviation",
+        "explanationMarkdown": "Start with Mean and Standard Deviation from the dataset.",
+        "animationHint": "prep"
+      },
+      {
+        "equation": "x - mean",
+        "explanationMarkdown": "Center a value by subtracting the Mean.",
+        "animationHint": "center"
+      },
+      {
+        "equation": "z = (x - mean)/standard deviation",
+        "explanationMarkdown": "Scale by Standard Deviation to get the Z Score.",
+        "animationHint": "scale"
+      }
+    ],
+    "interactiveModelID": "normal"
+  },
+  {
+    "id": "derivation-linear-regression",
+    "steps": [
+      {
+        "equation": "y = mx + b",
+        "explanationMarkdown": "Assume a linear model for predictions.",
+        "animationHint": "model"
+      },
+      {
+        "equation": "error_i = y_i - (mx_i + b)",
+        "explanationMarkdown": "Define residual error for each point.",
+        "animationHint": "residual"
+      },
+      {
+        "equation": "SSE = Σ error_i^2",
+        "explanationMarkdown": "Square and sum residuals to form a loss function.",
+        "animationHint": "loss"
+      },
+      {
+        "equation": "choose m,b minimizing SSE",
+        "explanationMarkdown": "Optimize m and b for the best fit line.",
+        "animationHint": "optimize"
+      }
+    ],
+    "interactiveModelID": "regression"
+  },
+  {
+    "id": "derivation-bayes-theorem",
+    "steps": [
+      {
+        "equation": "P(A and B) = P(A|B)P(B)",
+        "explanationMarkdown": "Write conditional probability in one direction.",
+        "animationHint": "start"
+      },
+      {
+        "equation": "P(A and B) = P(B|A)P(A)",
+        "explanationMarkdown": "Write the same joint probability in the reverse direction.",
+        "animationHint": "reverse"
+      },
+      {
+        "equation": "P(A|B) = P(B|A)P(A)/P(B)",
+        "explanationMarkdown": "Set both expressions equal and isolate P(A|B).",
+        "animationHint": "isolate"
+      }
+    ],
+    "interactiveModelID": "bayes"
+  }
+]

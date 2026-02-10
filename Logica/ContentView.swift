@@ -1,83 +1,65 @@
 import SwiftUI
-import SwiftData
-import Foundation
-import FoundationModels
 
 struct ContentView: View {
-    @Environment(\.modelContext) var modelContext
-    @Query var slates: [Slate]
-    
+    @StateObject var store = MathWikiStore()
+
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(slates) { i in
-                    Text(i.text)
+        NavigationStack(path: $store.navigationPath) {
+            Group {
+                if store.isLoading {
+                    ProgressView("Loading Logica...")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else if let error = store.loadErrorMessage {
+                    VStack(spacing: 10) {
+                        Text("Could not load bundled content")
+                            .font(.headline)
+                        Text(error)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                        Button("Retry") {
+                            store.load()
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                    .padding(20)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    HomeView(store: store, openPage: openPage)
                 }
             }
-            .navigationTitle("Found Slates")
-        }
-        .onAppear {
-            if (slates.isEmpty) {
-                addItem(Discovery(text: "Fire", emoji: "🔥", creators: [""]), at: CGPoint())
-                addItem(Discovery(text: "Water", emoji: "💧", creators: [""]), at: CGPoint())
-                addItem(Discovery(text: "Earth", emoji: "🌍", creators: [""]), at: CGPoint())
-                addItem(Discovery(text: "Wind", emoji: "💨", creators: [""]), at: CGPoint())
+            .navigationDestination(for: String.self) { pageID in
+                if let page = store.page(id: pageID) {
+                    PageView(page: page, store: store, openPage: openPage)
+                } else {
+                    ContentUnavailableView("Page Missing", systemImage: "questionmark.square")
+                }
+            }
+            .navigationTitle("Logica")
+            .toolbar {
+                ToolbarItemGroup(placement: .topBarTrailing) {
+                    Button {
+                        store.goBack()
+                    } label: {
+                        Image(systemName: "chevron.backward")
+                    }
+                    .disabled(!store.canGoBack)
+
+                    Button {
+                        store.goForward()
+                    } label: {
+                        Image(systemName: "chevron.forward")
+                    }
+                    .disabled(!store.canGoForward)
+                }
             }
         }
-    }
-    func addItem(_ discovery: Discovery, at location: CGPoint) {
-        withAnimation {
-            let newItem = Slate(discovery: discovery, placedLocation: location)
-            modelContext.insert(newItem)
+        .onChange(of: store.navigationPath) { _, newPath in
+            store.registerNavigationChangeIfNeeded(newPath)
         }
     }
 
-    func deleteItem(_ item: Slate) {
-        withAnimation {
-            modelContext.delete(item)
-        }
-    }
-
-    func moveItem(_ item: Slate, to location: CGPoint) {
-        withAnimation {
-            item.location = location
-        }
-    }
-}
-
-
-
-final class CraftCombiner {
-    let session = LanguageModelSession()
-    
-    func combine(a: String, b: String, discovered: [String]) async throws -> String {
-        let cap = 1000
-        let known = discovered.prefix(cap).joined(separator: ", ")
-        
-        let prompt = """
-        You are an Infinite Craft word-combination engine.
-        
-        Combine A and B into exactly one new item.
-        
-        A: \(a)
-        B: \(b)
-        
-        Already discovered items (reuse an exact match if it is the best answer):
-        \(known)
-        
-        Rules:
-        - Output should be only two strings seperated by a comma.
-        - There are two outputs: Name and Emoji.
-        - Output should look like this "Name, Emoji" 
-        - name must be 1 to 3 words, Title Case, no punctuation.
-        - Prefer something conceptually related to A and B.
-        - The emoji must be an Apple emoji most related to the word
-        """
-        
-        do {
-            return try await session.respond(to: prompt).content
-        } catch {
-            return ""
-        }
+    func openPage(_ pageID: String) {
+        store.openPage(pageID)
     }
 }

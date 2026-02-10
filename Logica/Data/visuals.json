@@ -1,0 +1,125 @@
+[
+  {
+    "id": "graph-linear",
+    "kind": "graph2D",
+    "modelID": "linear",
+    "parameters": [
+      { "id": "a", "label": "Slope", "min": -5.0, "max": 5.0, "step": 0.1, "defaultValue": 1.0 },
+      { "id": "b", "label": "Intercept", "min": -8.0, "max": 8.0, "step": 0.1, "defaultValue": 0.0 }
+    ],
+    "metadata": { "xMin": "-10", "xMax": "10", "yMin": "-10", "yMax": "10" }
+  },
+  {
+    "id": "graph-quadratic",
+    "kind": "graph2D",
+    "modelID": "quadratic",
+    "parameters": [
+      { "id": "a", "label": "a", "min": -3.0, "max": 3.0, "step": 0.1, "defaultValue": 1.0 },
+      { "id": "b", "label": "b", "min": -6.0, "max": 6.0, "step": 0.1, "defaultValue": 0.0 },
+      { "id": "c", "label": "c", "min": -10.0, "max": 10.0, "step": 0.1, "defaultValue": 0.0 }
+    ],
+    "metadata": { "xMin": "-8", "xMax": "8", "yMin": "-12", "yMax": "20" }
+  },
+  {
+    "id": "graph-cubic",
+    "kind": "graph2D",
+    "modelID": "cubic",
+    "parameters": [
+      { "id": "a", "label": "a", "min": -1.5, "max": 1.5, "step": 0.05, "defaultValue": 0.4 },
+      { "id": "b", "label": "b", "min": -3.0, "max": 3.0, "step": 0.1, "defaultValue": 0.0 },
+      { "id": "c", "label": "c", "min": -5.0, "max": 5.0, "step": 0.1, "defaultValue": 1.0 },
+      { "id": "d", "label": "d", "min": -8.0, "max": 8.0, "step": 0.1, "defaultValue": 0.0 }
+    ],
+    "metadata": { "xMin": "-6", "xMax": "6", "yMin": "-12", "yMax": "12" }
+  },
+  {
+    "id": "graph-logarithm",
+    "kind": "graph2D",
+    "modelID": "logarithm",
+    "parameters": [
+      { "id": "a", "label": "Scale", "min": -3.0, "max": 3.0, "step": 0.1, "defaultValue": 1.0 },
+      { "id": "b", "label": "Shift", "min": 0.2, "max": 6.0, "step": 0.1, "defaultValue": 1.5 }
+    ],
+    "metadata": { "xMin": "-1", "xMax": "12", "yMin": "-8", "yMax": "8" }
+  },
+  {
+    "id": "graph-exponential",
+    "kind": "graph2D",
+    "modelID": "exponential",
+    "parameters": [
+      { "id": "a", "label": "Scale", "min": -3.0, "max": 3.0, "step": 0.1, "defaultValue": 1.0 },
+      { "id": "b", "label": "Rate", "min": -1.5, "max": 1.5, "step": 0.05, "defaultValue": 0.5 }
+    ],
+    "metadata": { "xMin": "-6", "xMax": "6", "yMin": "-6", "yMax": "20" }
+  },
+  {
+    "id": "graph-sine",
+    "kind": "graph2D",
+    "modelID": "sine",
+    "parameters": [
+      { "id": "a", "label": "Amplitude", "min": -3.0, "max": 3.0, "step": 0.1, "defaultValue": 1.0 },
+      { "id": "b", "label": "Frequency", "min": 0.2, "max": 3.0, "step": 0.1, "defaultValue": 1.0 },
+      { "id": "c", "label": "Phase", "min": -3.14, "max": 3.14, "step": 0.05, "defaultValue": 0.0 },
+      { "id": "d", "label": "Vertical Shift", "min": -3.0, "max": 3.0, "step": 0.1, "defaultValue": 0.0 }
+    ],
+    "metadata": { "xMin": "-6.28", "xMax": "6.28", "yMin": "-4", "yMax": "4" }
+  },
+  {
+    "id": "graph-normal",
+    "kind": "graph2D",
+    "modelID": "normal",
+    "parameters": [
+      { "id": "mu", "label": "Mean", "min": -4.0, "max": 4.0, "step": 0.1, "defaultValue": 0.0 },
+      { "id": "sigma", "label": "Std Dev", "min": 0.3, "max": 4.0, "step": 0.1, "defaultValue": 1.0 }
+    ],
+    "metadata": { "xMin": "-8", "xMax": "8", "yMin": "0", "yMax": "0.6" }
+  },
+  {
+    "id": "graph-regression",
+    "kind": "graph2D",
+    "modelID": "regression",
+    "parameters": [
+      { "id": "m", "label": "Slope", "min": -3.0, "max": 3.0, "step": 0.1, "defaultValue": 1.0 },
+      { "id": "b", "label": "Intercept", "min": -5.0, "max": 5.0, "step": 0.1, "defaultValue": 0.0 }
+    ],
+    "metadata": { "xMin": "-8", "xMax": "8", "yMin": "-8", "yMax": "8" }
+  },
+  {
+    "id": "graph-bayes",
+    "kind": "graph2D",
+    "modelID": "bayes",
+    "parameters": [
+      { "id": "sensitivity", "label": "Sensitivity", "min": 0.2, "max": 0.99, "step": 0.01, "defaultValue": 0.9 },
+      { "id": "falsePositive", "label": "False Positive", "min": 0.01, "max": 0.8, "step": 0.01, "defaultValue": 0.1 }
+    ],
+    "metadata": { "xMin": "0", "xMax": "1", "yMin": "0", "yMax": "1" }
+  },
+  {
+    "id": "animation-default",
+    "kind": "animation",
+    "modelID": "none",
+    "parameters": [],
+    "metadata": { "title": "Animated intuition" }
+  },
+  {
+    "id": "timeline-default",
+    "kind": "timeline",
+    "modelID": "none",
+    "parameters": [],
+    "metadata": { "title": "Concept timeline" }
+  },
+  {
+    "id": "lattice-default",
+    "kind": "lattice",
+    "modelID": "none",
+    "parameters": [],
+    "metadata": { "title": "Structure lattice" }
+  },
+  {
+    "id": "number-constellation",
+    "kind": "animation",
+    "modelID": "none",
+    "parameters": [],
+    "metadata": { "title": "Number constellation" }
+  }
+]

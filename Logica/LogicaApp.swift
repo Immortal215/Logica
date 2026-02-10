@@ -1,5 +1,4 @@
 import SwiftUI
-import SwiftData
 
 @main
 struct LogicaApp: App {
@@ -7,6 +6,5 @@ struct LogicaApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Slate.self)
     }
 }
